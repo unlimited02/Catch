@@ -129,11 +129,10 @@ void Main::setSprite()
 // 画像の取得判定用
 void Main::setSpriteJudge()
 {
-    for (int tag = tagNumber ; tag < SPRITEMOUNT + 1 ; tag++)
+    for (int tagJudge = tagNumber ; tagJudge < SPRITEMOUNT + 1 ; tagJudge++)
     {
         deleteList.push_back(true);
     }
-    log("判定");
 }
 
 // 更新
@@ -151,7 +150,7 @@ void Main::update(float dt)
         showDust();
     }
 
-    // 取得判定変更
+    // 真理値の変更
     if (deleteTag <= SPRITEMOUNT && getChildByTag(deleteTag)->getScale() == 0)
     {
         removeChildByTag(deleteTag);
@@ -159,7 +158,7 @@ void Main::update(float dt)
         deleteTag += 1;
     }
     
-    // 取得判定変更、カウント初期化
+    // 真理値、カウント初期化
     if (deleteTag <= SPRITEMOUNT && getChildByTag(deleteTag)->getPosition().x <= -200)
     {
         removeChildByTag(deleteTag);

@@ -8,8 +8,6 @@ USING_NS_CC;
 class ItemSprite : public cocos2d::Sprite
 {
 private:
-
-public:
     enum GomiType
     {
         Type1 = 1,
@@ -17,6 +15,7 @@ public:
         Type3,
     };
     
+public:
     virtual bool init();
     void setSprite();
     

@@ -10,10 +10,9 @@ class Main : public cocos2d::Layer
 {
 private:
     std::deque<bool> deleteList;
+    std::vector<int> types;
     
     float time;
-    float _time;
-    float saveTime;
     
     int tagNumber = 0;
     int deleteTag = 0;
@@ -44,7 +43,6 @@ private:
     
 public:
     std::vector<GomiConfig> _gomiConfigs;
-    std::vector<int> types;
     
     static cocos2d::Scene* createScene();
     virtual bool init();
