@@ -11,6 +11,7 @@
 		001F128219F7A59800D18879 /* gomiItem1.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F127F19F7A59800D18879 /* gomiItem1.png */; };
 		001F128319F7A59800D18879 /* gomiItem2.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F128019F7A59800D18879 /* gomiItem2.png */; };
 		001F128419F7A59800D18879 /* gomiItem3.png in Resources */ = {isa = PBXBuildFile; fileRef = 001F128119F7A59800D18879 /* gomiItem3.png */; };
+		0047533919FF4FB5005098A1 /* ScoreScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0047533719FF4FB5005098A1 /* ScoreScene.cpp */; };
 		008E032C19F65CE3005E8D27 /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008E032A19F65CE3005E8D27 /* MainScene.cpp */; };
 		00904F9E19F8F0C1009E2F72 /* gomiBox1.png in Resources */ = {isa = PBXBuildFile; fileRef = 00904F9B19F8F0C1009E2F72 /* gomiBox1.png */; };
 		00904F9F19F8F0C1009E2F72 /* gomiBox2.png in Resources */ = {isa = PBXBuildFile; fileRef = 00904F9C19F8F0C1009E2F72 /* gomiBox2.png */; };
@@ -226,6 +227,8 @@
 		001F127F19F7A59800D18879 /* gomiItem1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gomiItem1.png; sourceTree = "<group>"; };
 		001F128019F7A59800D18879 /* gomiItem2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gomiItem2.png; sourceTree = "<group>"; };
 		001F128119F7A59800D18879 /* gomiItem3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gomiItem3.png; sourceTree = "<group>"; };
+		0047533719FF4FB5005098A1 /* ScoreScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScoreScene.cpp; path = ../Classes/ScoreScene.cpp; sourceTree = "<group>"; };
+		0047533819FF4FB5005098A1 /* ScoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreScene.h; path = ../Classes/ScoreScene.h; sourceTree = "<group>"; };
 		008E032A19F65CE3005E8D27 /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainScene.cpp; path = ../Classes/MainScene.cpp; sourceTree = "<group>"; };
 		008E032B19F65CE3005E8D27 /* MainScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainScene.h; path = ../Classes/MainScene.h; sourceTree = "<group>"; };
 		00904F9B19F8F0C1009E2F72 /* gomiBox1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gomiBox1.png; sourceTree = "<group>"; };
@@ -359,6 +362,8 @@
 				00904FA219F8FB47009E2F72 /* TitleScene.h */,
 				008E032A19F65CE3005E8D27 /* MainScene.cpp */,
 				008E032B19F65CE3005E8D27 /* MainScene.h */,
+				0047533719FF4FB5005098A1 /* ScoreScene.cpp */,
+				0047533819FF4FB5005098A1 /* ScoreScene.h */,
 				001F127219F7418500D18879 /* ItemSprite.cpp */,
 				001F127319F7418500D18879 /* ItemSprite.h */,
 				001F127719F74C7D00D18879 /* Config.h */,
@@ -701,6 +706,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				0047533919FF4FB5005098A1 /* ScoreScene.cpp in Sources */,
 				008E032C19F65CE3005E8D27 /* MainScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,

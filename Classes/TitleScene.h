@@ -25,7 +25,9 @@ public:
     void setButton();
     
     virtual void gameStart();
+    virtual void gameScore();
     virtual void gameEnd(cocos2d::Ref *pSender);
+    
     
     CREATE_FUNC(Title);
 };

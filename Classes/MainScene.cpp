@@ -1,6 +1,7 @@
 #include "MainScene.h"
 #include "ItemSprite.h"
 #include "Config.h"
+#include "ScoreScene.h"
 
 Scene *Main::createScene()
 {
@@ -25,9 +26,13 @@ bool Main::init()
     
     setSpriteJudge();
     
+    setButton();
+    
     showDust();
 
     scheduleUpdate();
+    
+    setButton();
     
     // タッチイベント
     EventListenerTouchOneByOne *listener = EventListenerTouchOneByOne::create();
@@ -134,6 +139,42 @@ void Main::setSpriteJudge()
         deleteList.push_back(true);
     }
 }
+// ボタンの配置
+void Main::setButton()
+{
+    // 終了ボタン
+    MenuItem *endItem = MenuItemImage::create("endbtn_result.png", "endbtn_push.png", CC_CALLBACK_1(Main::gameEnd, this));
+    endItem->setPosition(Vec2(WINSIZE.width/2 + WINSIZE.width/4, WINSIZE.height/2 - WINSIZE.height/2.5 -50));
+    Menu *menu1 = Menu::create(endItem, nullptr);
+    menu1->setPosition(Vec2::ZERO);
+    this->addChild(menu1, Z_Button);
+    
+    // リスタートボタン
+    MenuItem *restartItem = MenuItemImage::create("startbtn_result.png", "startbtn_push.png", CC_CALLBACK_0(Main::restart, this));
+    restartItem->setPosition(Vec2(WINSIZE.width/2 + WINSIZE.width/4, WINSIZE.height/2 - WINSIZE.height/2.5));
+    Menu *menu2 = Menu::create(restartItem, nullptr);
+    menu2->setPosition(Vec2::ZERO);
+    this->addChild(menu2, Z_Button);
+    
+    // スコアボタン
+    MenuItem *scoreItem = MenuItemImage::create("startbtn_result.png", "startbtn_push.png", CC_CALLBACK_0(Main::showScore, this));
+    scoreItem->setPosition(Vec2(WINSIZE.width/2 + WINSIZE.width/4, WINSIZE.height/2 - WINSIZE.height/2.5 - 100));
+    Menu *menu3 = Menu::create(scoreItem, nullptr);
+    menu3->setPosition(Vec2::ZERO);
+    this->addChild(menu3, Z_Button);
+    
+    Label *endLabel = Label::createWithSystemFont("終了", "Arial", 30);
+    endLabel->setPosition(endItem->getPosition());
+    this->addChild(endLabel, Z_Label);
+    
+    Label *restartLabel = Label::createWithSystemFont("リスタート", "Arial", 30);
+    restartLabel->setPosition(restartItem->getPosition());
+    this->addChild(restartLabel, Z_Label);
+    
+    Label *scoreLabel = Label::createWithSystemFont("ランキング", "Arial", 30);
+    scoreLabel->setPosition(scoreItem->getPosition());
+    this->addChild(scoreLabel, Z_Label);
+}
 
 // 更新
 void Main::update(float dt)
@@ -159,12 +200,19 @@ void Main::update(float dt)
     }
     
     // 真理値、カウント初期化
-    if (deleteTag <= SPRITEMOUNT && getChildByTag(deleteTag)->getPosition().x <= -200)
+    if (deleteTag <= SPRITEMOUNT && getChildByTag(deleteTag)->getPosition().x <= -50)
     {
         removeChildByTag(deleteTag);
         deleteList[deleteTag] = false;
         dustCount = 0;
         deleteTag += 1;
+    }
+    
+    if (deleteTag == SPRITEMOUNT)
+    {
+        UserDefault *userDef = UserDefault::getInstance();
+        userDef->setIntegerForKey("Score", score);
+        userDef->flush();
     }
     
 }
@@ -206,9 +254,21 @@ void Main::scoreCaric()
     {
         score += 200;
     }
-    else
+    else if (dustCount < 50)
     {
         score += 500;
+    }
+    else if (dustCount < 60)
+    {
+        score += 1000;
+    }
+    else if (dustCount < 65)
+    {
+        score += 3000;
+    }
+    else
+    {
+        score *= 1.25;
     }
     log("スコア:%d",score);
 }
@@ -245,13 +305,27 @@ Action *Main::action2()
 
 void Main::restart()
 {
-    
+    Score::changeScore();
+    Scene *scene = Main::createScene();
+    TransitionScene *effect = TransitionCrossFade::create(0.5, scene);
+    Director::getInstance()->replaceScene(effect);
+    log("リスタート");
+}
+
+void Main::showScore()
+{
+    Score::changeScore();
+    Scene *scene = Score::createScene();
+    TransitionScene *effect = TransitionCrossFade::create(0.5, scene);
+    Director::getInstance()->replaceScene(effect);
+    log("リスタート");
 }
 
 void Main::gameEnd(cocos2d::Ref *pSender)
 {
     unscheduleUpdate();
     log("Update終了");
+    Score::changeScore();
     Director::getInstance()->end();
     exit(0);
 }

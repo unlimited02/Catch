@@ -30,9 +30,11 @@ private:
     enum ZOrder
     {
         Z_Dust  = 0,
+        Z_Button,
+        Z_Label,
         Z_Item1,
         Z_GetItem,
-        Z_Label,
+
     };
     
     struct GomiConfig
@@ -57,12 +59,14 @@ public:
     void showDust();
     void setSprite();
     void setSpriteJudge();
+    void setButton();
     void gomiConfig();
     void scoreCaric();
     void scoreLabel();
     
     virtual void update(float dt);
     virtual void restart();
+    virtual void showScore();
     virtual void gameEnd(cocos2d::Ref *pSender);
     
     CREATE_FUNC(Main);
